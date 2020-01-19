@@ -1,0 +1,134 @@
+{% load static %}
+<html>
+<head>
+    <title>HackED20 Website</title>
+    <link href="{% static 'dashboard/l_style.css' %}" rel="stylesheet" type="text/css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /-->  
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+</head> 
+<body>
+    <header>
+    <div class="row">
+        <div class="logo">
+        <img src="{% static 'dashboard/logo.png' %}"
+        </div>
+         
+    <ul class="main-nav">  
+        <li><a href="index"> HOME </a></li>
+        <li><a href="dashboard"> DASHBOARD </a></li>
+        <li class="active"></li><a href="layout"> LAYOUT </a></li>
+        <li><a href="about"> ABOUT </a></li>
+        <li><a href="contact"> CONTACT </a></li>
+        <li><a href="account"> ACCOUNT </a></li>
+        <li><a href="settings"> SETTINGS </a></li>
+        <li><a href="signup" class="signup-btn"> SIGN UP </a></li>
+    </ul>    
+    </div>
+    <div class="search-box">
+        <input type="text" name="" id ="search_streamer" class="search-txt" onclick="search()" placeholder="Type to search"/>
+        <a class="search-btn" href="#">
+        <i class="fas fa-search"></i>
+        </a>
+    </div>
+
+    
+    <div class="holder_layout">    
+        <h3>Add Streamer name and select streaming platform </h3>
+        <div class="form-group">  
+             <form name="add_name" id="add_name">  
+                  <div class="table-responsive">  
+                       <table class="table table-bordered" id="dynamic_field">  
+                            <tr>  
+                                 <td><input type="text" name="name[]" placeholder="Streamer name" class="form-control" /></td>
+                                 <td> <div class="box">
+                                    <select id ="stream_list">
+                                    <option>Facebook</option>
+                                    <option>Mixer</option>
+                                    <option>Twitch</option>
+                                    <option>Youtube</option>
+                                    </select>
+                                </div> </td> 
+                                 <td><button type="button" name="add" id="add" class="btn-success"> + </button></td></td>>  
+                            </tr>
+                       </table>
+                       <input type="image" src="{% static 'dashboard/1_1.png' %}" id="1_1" class="btn-watch" />
+                         <span class="spacer"></span>
+                         <input type="image" src="{% static 'dashboard/1_2.png' %}" id="1_2" class="btn-watch" />
+                         <span class="spacer"></span>
+                         <input type="image" src="{% static 'dashboard/1_3.png' %}" id="1_3" class="btn-watch" />    
+                  </div>
+                  
+             </form>  
+        </div>  
+        </div>
+    </header>
+</body>
+<script>  
+    $(document).ready(function(){  
+         var i=1;
+         var x = document.getElementById("1_1");
+          var y = document.getElementById("1_2");
+          var z = document.getElementById("1_3");
+
+         $('#add').click(function(){
+               if (i < 4){
+                   i++;
+                   $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Streamer name" class="form-control" /><td> <div class="box"><select id ="stream_list"><option>Facebook</option><option>Mixer</option><option>Twitch</option><option>Youtube</option></select></div> </td></td><td><button type="button" name="remove" id="'+i+'" class="btn_remove">-</button></td></tr>');
+               }
+               if (i == 1) {
+          x.src = "{% static 'dashboard/1_1.png' %}";
+          y.src = "{% static 'dashboard/1_2.png' %}";
+          z.src = "{% static 'dashboard/1_3.png' %}";
+         }  else if (i == 2) {
+          x.src = "{% static 'dashboard/2_1.png' %}";
+          y.src = "{% static 'dashboard/2_2.png' %}";
+          z.src = "{% static 'dashboard/2_3.png' %}";
+         } else if (i == 3) {
+          x.src = "{% static 'dashboard/3_1.png' %}";
+          y.src = "{% static 'dashboard/3_2.png' %}";
+          z.src = "{% static 'dashboard/3_3.png' %}";
+         } else if (i == 4) {
+          x.src = "{% static 'dashboard/4_1.png' %}";
+          y.src = "{% static 'dashboard/4_2.png' %}";
+          z.src = "{% static 'dashboard/4_3.png' %}";
+         }       
+         });  
+         $(document).on('click', '.btn_remove', function(){  
+              var button_id = $(this).attr("id");   
+              $('#row'+button_id+'').remove();    
+              i--;  
+              if (i == 1) {
+          x.src = "{% static 'dashboard/1_1.png' %}";
+          y.src = "{% static 'dashboard/1_2.png' %}";
+          z.src = "{% static 'dashboard/1_3.png' %}";
+         }  else if (i == 2) {
+          x.src = "{% static 'dashboard/2_1.png' %}";
+          y.src = "{% static 'dashboard/2_2.png' %}";
+          z.src = "{% static 'dashboard/2_3.png' %}";
+         } else if (i == 3) {
+          x.src = "{% static 'dashboard/3_1.png' %}";
+          y.src = "{% static 'dashboard/3_2.png' %}";
+          z.src = "{% static 'dashboard/3_3.png' %}";
+         } else if (i == 4) {
+          x.src = "{% static 'dashboard/4_1.png' %}";
+          y.src = "{% static 'dashboard/4_2.png' %}";
+          z.src = "{% static 'dashboard/4_3.png' %}";
+         }
+         });  
+         $('#submit').click(function(){            
+              $.ajax({  
+                   url:"name.php",  
+                   method:"POST",  
+                   data:$('#add_name').serialize(),  
+                   success:function(data)  
+                   {  
+                        alert(data);  
+                        $('#add_name')[0].reset();  
+                   }  
+              });  
+         });  
+    });  
+    </script>   
+</html>

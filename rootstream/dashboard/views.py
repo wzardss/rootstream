@@ -17,3 +17,9 @@ def contact(request):
 
 def account(request):
     return render(request, 'dashboard/account.html')
+
+def layout(request):
+    return render(request, 'dashboard/layout.html')
+
+def settings(request):
+    return render(request, 'dashboard/settings.html')
