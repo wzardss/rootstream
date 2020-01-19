@@ -62,7 +62,7 @@
           var z = document.getElementById("1_3");
 
          $('#row1').click(function(){
-               if (i < 4){
+               if (i < 2){
                    i++;
                    $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" id="input'+i+'" name="name[]" placeholder="Streamer name" class="form-control" /><td> <div class="box"><select id ="stream_list' +i+'"><option>Mixer</option><option>Twitch</option></select></div> </td></td><td><button type="button" name="remove" id="'+i+'" class="btn_remove">-</button></td></tr>');
                }
@@ -181,8 +181,42 @@
                          }
                          break;
                     case "3_3":
-                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
-                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         var stream1 = document.getElementById("input1").value;
+                         var x1 = document.getElementById("stream_list1");
+                         var xtext1 = x1.options[x1.selectedIndex].text;
+                         var stream2 = document.getElementById("input2").value;
+                         var x2 = document.getElementById("stream_list2");
+                         var xtext2 = x2.options[x2.selectedIndex].text;
+                         var stream3 = document.getElementById("input3").value;
+                         var x3 = document.getElementById("stream_list3");
+                         var xtext3 = x3.options[x3.selectedIndex].text;
+                         var queryString = "";
+                         switch (xtext1) {
+                              case "Twitch":
+                                   queryString += "?para1=" + "https://player.twitch.tv/?channel=" + stream1;
+                                   break;
+                              case "Mixer":
+                                   queryString += "?para1=" + "https://mixer.com/embed/player/" + stream1;
+                                   break;
+                         }
+                         switch (xtext2) {
+                              case "Twitch":
+                                   queryString += "&para2=" + "https://player.twitch.tv/?channel=" + stream2;
+                                   break;
+                              case "Mixer":
+                                   queryString += "&para2=" + "https://mixer.com/embed/player/" + stream2;
+                                   break;
+                         }
+                         switch (xtext3) {
+                              case "Twitch":
+                                   queryString += "&para3=" + "https://player.twitch.tv/?channel=" + stream3;
+                                   window.open("layout33" + queryString);
+                                   break;
+                              case "Mixer":
+                                   queryString += "&para3=" + "https://mixer.com/embed/player/" + stream3;
+                                   window.open("layout33" + queryString);
+                                   break;
+                         }
                          break;
                     case "4_3":
                          document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
