@@ -8,8 +8,8 @@ body
 }
 
 .contact-section {
-    background: url(feelsgoodman.png) no-repeat center;
-    background-size: cover;
+    height: 100%;
+    width: 100%;
     padding: 40px 0;
 }
 
@@ -36,7 +36,7 @@ body
     display: block;
     width: 100%;
     box-sizing: border-box;
-    margin: 16px 0;
+    margin: 10px 0;
     border: 0;
     background: #111;
     padding: 20px 40px;
@@ -45,12 +45,14 @@ body
     transition: 0.5s;
 }
 
+
 .contact-form-text:hover{
     box-shadow: 0 0 10px 4px cornflowerblue;  
 }
 
 textarea.contact-form-text{
     resize: none;
+    font-size: 20px;
     height: 120px;
 }
 
@@ -69,10 +71,6 @@ contact-form-btn{
     background: cornflowerblue;
 }
 
-body
-{
-    font-family: monospace;
-}
 .row
 {
     max-width: 1200px;
@@ -116,7 +114,6 @@ body
 
 input {
     width: 130;
-    font-family: Helvetica, sans-serif;
     font-size: 20px;
 }
 
@@ -295,6 +292,15 @@ h2
     font-size: 40px;
     text-align: center;
     margin-top: 350px;
+}
+
+h4
+{
+    color: white;
+    text-transform: uppercase;
+    font-size: 40px;
+    text-align: center;
+    margin-top: 1px;
 }
 
 header
