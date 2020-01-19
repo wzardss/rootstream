@@ -86,7 +86,7 @@
     
     function getFollows_Twitch(userID) {
         Follow_request_Twitch.addEventListener('load', followsLoaded_Twitch);
-        Follow_request_Twitch.open('GET', `https://api.twitch.tv/kraken/users/${userID}/follows/channels?limit=100&?sortby=followers`);
+        Follow_request_Twitch.open('GET', `https://api.twitch.tv/kraken/users/${userID}/follows/channels?limit=100&sortby=last_broadcast`);
         Follow_request_Twitch.setRequestHeader('Client-ID', 'f6z4ksrj4k72o3hb11j5w5qajgfi2v');
         Follow_request_Twitch.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
         Follow_request_Twitch.send();
