@@ -284,12 +284,13 @@ header
     margin: auto;
     padding: 0 10px;
     overflow: hidden;
+    left: 1000px;
+    position: relative;
 }
 
 .username-form-text {
     display: block;
-    width: 50%;
-    box-sizing: border-box;
+    width: 100%;
     margin: 10px 0;
     border: 0;
     background: #111;
