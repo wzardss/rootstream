@@ -26,3 +26,36 @@ def settings(request):
 
 def layout11(request):
     return render(request, 'dashboard/layout11.html')
+
+def layout12(request):
+    return render(request, 'dashboard/layout12.html')
+
+def layout13(request):
+    return render(request, 'dashboard/layout13.html')
+
+def layout21(request):
+    return render(request, 'dashboard/layout21.html')
+
+def layout22(request):
+    return render(request, 'dashboard/layout22.html')
+
+def layout23(request):
+    return render(request, 'dashboard/layout23.html')
+
+def layout31(request):
+    return render(request, 'dashboard/layout31.html')
+
+def layout32(request):
+    return render(request, 'dashboard/layout32.html')
+
+def layout33(request):
+    return render(request, 'dashboard/layout33.html')
+
+def layout41(request):
+    return render(request, 'dashboard/layout41.html')
+
+def layout42(request):
+    return render(request, 'dashboard/layout42.html')
+
+def layout43(request):
+    return render(request, 'dashboard/layout43.html')
