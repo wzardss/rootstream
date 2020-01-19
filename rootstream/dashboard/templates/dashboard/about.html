@@ -1,0 +1,33 @@
+
+{% load static %}
+<html>
+<head>
+    <title>HackED20 Website</title>
+    <link href="{% static 'dashboard/style.css' %}" rel="stylesheet" type="text/css">
+</head> 
+<body>
+    <header>
+        
+    <div class="row">
+        <div class="logo">
+        <img src="{% static 'dashboard/logo.png'%}"
+        </div>
+            
+    <ul class="main-nav">    
+        <li><a href=""> HOME </a></li>
+        <li><a href="dashboard"> DASHBOARD </a></li>
+        <li><a href=""> LAYOUT </a></li>
+        <li class="active"><a href="about"> ABOUT </a></li>
+        <li><a href=""> CONTACT </a></li>
+        <li><a href=""> ACCOUNT </a></li>
+        <li><a href=""> SETTINGS </a></li>
+        <li class="active"><a href="signup" class="signup-btn"> SIGN UP  </a></li>
+    </ul>    
+    </div>
+        
+    <div class="hero">
+    <h2>This is StreamHub. Here, you can watch multiple streams from different platforms all at once.</h2>
+    </div>
+    </header>
+</body>    
+</html>
