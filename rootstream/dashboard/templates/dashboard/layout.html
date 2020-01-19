@@ -274,9 +274,36 @@
                          }
                          break;
                     case "2_1":
-                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
-                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
-                         break;
+                         var stream1 = document.getElementById("input1").value;
+                         var x1 = document.getElementById("stream_list1");
+                         var xtext1 = x1.options[x1.selectedIndex].text;
+                         var stream2 = document.getElementById("input2").value;
+                         var x2 = document.getElementById("stream_list2");
+                         var xtext2 = x2.options[x2.selectedIndex].text;
+                         var queryString = "";
+                         switch (xtext1) {
+                              case "Twitch":
+                                   queryString += "?para1=" + "https://player.twitch.tv/?channel=" + stream1;
+                                   queryString += "&para2=" + "https://www.twitch.tv/embed/" + stream1  + "/chat";
+                                   break;
+                              case "Mixer":
+                                   queryString += "?para1=" + "https://mixer.com/embed/player/" + stream1;
+                                   queryString += "&para2=" + "https://mixer.com/embed/chat/" + stream1;
+                                   break;
+                         }
+                         switch (xtext2) {
+                              case "Twitch":
+                                   queryString += "&para3=" + "https://player.twitch.tv/?channel=" + stream2;
+                                   queryString += "&para4=" + "https://www.twitch.tv/embed/" + stream2  + "/chat";
+                                   window.open("layout21" + queryString);
+                                   break;
+                              case "Mixer":
+                                   queryString += "&para3=" + "https://mixer.com/embed/player/" + stream2;
+                                   queryString += "&para4=" + "https://mixer.com/embed/chat/" + stream2;
+                                   window.open("layout21" + queryString);
+                                   break;
+                         }
+                    break;
                     case "3_1":
                          document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
                          document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
