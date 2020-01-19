@@ -26,7 +26,7 @@
     </ul>    
     </div>
     <table style="width:100%; height:100%">
-        <tr> <td style="width:70%">
+        <tr style="height:50%" > <td style="width:50%">
             <iframe 
             id ="frame1"
             src="https://player.twitch.tv/?channel=mizkif"
@@ -34,17 +34,38 @@
             width="100%"
             frameborder="0"
             scrolling="no"
-            allowfullscreen="true"> 
+            allowfullscreen="true">
         </iframe></td>
-            <td style="width:30%">
-            <iframe
+        <td style="width:50%">
+            <iframe 
             id ="frame2"
+            src="https://player.twitch.tv/?channel=mizkif"
+            height="100%"
+            width="100%"
+            frameborder="0"
+            scrolling="no"
+            allowfullscreen="true"></iframe></td>
+        </tr>
+        <tr style="height:50%">
+            <td style="width:50%">
+            <iframe
+            id ="frame3"
             frameborder="0"
             scrolling="no"
             src="https://www.twitch.tv/embed/mizkif/chat"
             height="100%"
             width="100%"
-            frameborder="0"> 
+            frameborder="0">
+        </iframe></td>
+        <td style="width:50%">
+            <iframe
+            id ="frame4"
+            frameborder="0"
+            scrolling="no"
+            src="https://www.twitch.tv/embed/mizkif/chat"
+            height="100%"
+            width="100%"
+            frameborder="0">
         </iframe></td>
         </tr>
       </table>
@@ -58,7 +79,11 @@
         var x = queries[0].split(/=(.+)/);
         document.getElementById("frame1").src = x[1];
         var y = queries[1].split(/=(.+)/);
-        document.getElementById("frame2").src = y[1];
+        document.getElementById("frame3").src = y[1];
+        var a = queries[2].split(/=(.+)/);
+        document.getElementById("frame2").src = a[1];
+        var b = queries[3].split(/=(.+)/);
+        document.getElementById("frame4").src = b[1];
     </script>
 
 </body>    
