@@ -1,24 +1,42 @@
-<!DOCTYPE html>
-<html lang = "en" dir = "ltr">
-    <head>
-        <meta charset =  "utf-8">
-        <title></title>
-        <link rel = "stylesheet" href = "{% static "dashboard/c_style.css" %}">
-        <meta name = "viewport" content = "width = device-width, initial-scale = 1">
-    </head>
-    <body>
-
-        <div class = "contact-section">
-
-            <h1>Contact Us</h1>
-            <div class = "border"></div>
-            <form class = "contact-form" action = "Contact.html" method = "post">
-                <input type="text" class="contact-form-text" placeholder = "Your Name">
-                <input type="text" class="contact-form-text" placeholder = "Email">
-                <textarea class="contact-form-text" placeholder = "Your Message"></textarea>
-                <input type="submit" class="contact-form-btn">
-            </form>
-
+{% load static %}
+<html>
+<head>
+    <title>HackED20 Website</title>
+    <link href="{% static 'dashboard/c_style.css' %}" rel="stylesheet" type="text/css">
+    <meta name = "viewport" content = "width = device-width, initial-scale = 1">
+</head> 
+<body>
+    <header>
+        
+    <div class="row">
+        <div class="logo">
+        <img src="{% static 'dashboard/logo.png'%}"
         </div>
-    </body>
+            
+    <ul class="main-nav">    
+        <li><a href="index"> HOME </a></li>
+        <li><a href="dashboard"> DASHBOARD </a></li>
+        <li><a href="layout"> LAYOUT </a></li>
+        <li class="active"><a href="about"> ABOUT </a></li>
+        <li><a href="contact"> CONTACT </a></li>
+        <li><a href="account"> ACCOUNT </a></li>
+        <li><a href="settings"> SETTINGS </a></li>
+        <li class="active"><a href="signup" class="signup-btn"> SIGN UP  </a></li>
+    </ul>    
+    </div>
+    <div class = "contact-section">
+
+        <h1>Contact Us</h1>
+        <div class = "border"></div>
+        <form class = "contact-form" action = "Contact.html" method = "post">
+            <input type="text" class="contact-form-text" placeholder = "Your Name">
+            <input type="text" class="contact-form-text" placeholder = "Email">
+            <textarea class="contact-form-text" placeholder = "Your Message"></textarea>
+            <input type="submit" class="contact-form-btn">
+        </form>
+
+    </div>
+    </header>
+    
+</body>    
 </html>
