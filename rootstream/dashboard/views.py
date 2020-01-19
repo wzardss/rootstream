@@ -11,3 +11,6 @@ def signup(request):
 
 def about(request):
     return render(request, 'dashboard/about.html')
+
+def contact(request):
+    return render(request, 'dashboard/contact.html')
