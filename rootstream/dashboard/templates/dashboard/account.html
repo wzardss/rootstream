@@ -13,25 +13,101 @@
         </div>
             
     <ul class="main-nav">    
-        <li class="active"><a href="index"> HOME </a></li>
+        <li><a href="index"> HOME </a></li>
         <li><a href="dashboard"> DASHBOARD </a></li>
         <li><a href="layout"> LAYOUT </a></li>
         <li><a href="about"> ABOUT </a></li>
         <li><a href="contact"> CONTACT </a></li>
-        <li><a href="account"> ACCOUNT </a></li>
+        <li class="active"><a href="account"> ACCOUNT </a></li>
         <li><a href="settings"> SETTINGS </a></li>
         <li class="active"><a href="signup" class="signup-btn"> SIGN UP </a></li>
     </ul>    
     </div>
+
+    <input type="text" class="username-form-text" placeholder = "Twitch Username" id="Twitch-Username"> 
+    <a class="btn btn-submit" id="Twitch-submit" onclick="twitch()"> Submit </a>
+    <input type="text" class="username-form-text" placeholder = "Mixer Username" id="Mixer-Username"> 
+    <a class="btn btn-submit" id="Mixer-submit" onclick="mixer()"> Submit </a>
         
     <div class="hero">
-    <h1>Watch Streams With Convenience</h1>
-        
-    <div class="button">
-        <a href="" class="btn btn-one"> Watch Video</a>
-        <a href="" class="btn btn-two"> Explore More</a>    
-    </div>    
-    </div>
+    <h1>Enter your usernames to use our smart layout feature</h1>
     </header>
 </body>    
 </html>
+
+<script>
+    var ID_request_Twitch = new XMLHttpRequest();
+    var Follow_request_Twitch = new XMLHttpRequest();
+
+    function twitch() {
+        var username_Twitch = document.getElementById("Twitch-Username").value;
+        getUserID_Twitch(username_Twitch);
+    }
+
+    function mixer() {
+        var username_Mixer = document.getElementById("Mixer-Username").value;
+        getUserID_Mixer(username_Mixer);
+    }
+
+    function getUserID_Twitch(username) {
+        ID_request_Twitch.addEventListener('load', userIDLoaded_Twitch);
+        ID_request_Twitch.open('GET', `https://api.twitch.tv/kraken/users?login=${username}`);
+        ID_request_Twitch.setRequestHeader('Client-ID', 'f6z4ksrj4k72o3hb11j5w5qajgfi2v');
+        ID_request_Twitch.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+        ID_request_Twitch.send();
+    }
+    
+    function getFollows_Twitch(userID) {
+        Follow_request_Twitch.addEventListener('load', followsLoaded_Twitch);
+        Follow_request_Twitch.open('GET', `https://api.twitch.tv/kraken/users/${userID}/follows/channels?limit=100`);
+        Follow_request_Twitch.setRequestHeader('Client-ID', 'f6z4ksrj4k72o3hb11j5w5qajgfi2v');
+        Follow_request_Twitch.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
+        Follow_request_Twitch.send();
+    }
+
+    function userIDLoaded_Twitch() {
+        var response_Twitch = JSON.parse(ID_request_Twitch.responseText);
+        console.log(response_Twitch.users[0].name);
+        getFollows_Twitch(response_Twitch.users[0]._id);
+    }
+
+    function followsLoaded_Twitch() {
+        var response_Twitch = JSON.parse(Follow_request_Twitch.responseText);
+        response_Twitch.follows.forEach(function (channel, index, array) {
+            console.log(channel.channel.name)
+        })
+    }
+</script>
+
+
+<script>
+    'use strict';
+    
+    var ID_request_Mixer = new XMLHttpRequest();
+    var Follow_request_Mixer = new XMLHttpRequest();
+
+    function getUserID_Mixer(user) {
+        ID_request_Mixer.addEventListener('load', userIDLoaded_Mixer);
+        ID_request_Mixer.open('GET', `https://mixer.com/api/v1/users/search?query=${user}`);
+        ID_request_Mixer.send();
+    }
+
+    function getFollows_Mixer(userID) {
+        Follow_request_Mixer.addEventListener('load', userFollowLoaded_Mixer);
+        Follow_request_Mixer.open('GET', `https://mixer.com/api/v1/users/${userID}/follows`);
+        Follow_request_Mixer.send();
+    }
+
+    function userIDLoaded_Mixer() {
+        var response_Mixer = JSON.parse(ID_request_Mixer.responseText);
+        console.log(response_Mixer[0].id);
+        getFollows_Mixer(response_Mixer[0].id);
+    }
+
+    function userFollowLoaded_Mixer() {
+        var response_Mixer = JSON.parse(Follow_request_Mixer.responseText);
+        response_Mixer.forEach(function(channel, index, array) {
+            console.log(channel.user.username);
+        })
+    }
+</script>

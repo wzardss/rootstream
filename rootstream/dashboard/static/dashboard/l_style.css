@@ -325,7 +325,7 @@ header
 }
 .btn-success
 {
-    background: blue;
+    background: rgb(162, 0, 255);
     height: 50px;
     width: 50px;
     border: none;
@@ -333,7 +333,7 @@ header
 }
 .btn_remove
 {
-    background: red;
+    background: rgb(255, 60, 0);
     height: 50px;
     width: 50px;
     border: none;

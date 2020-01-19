@@ -3,9 +3,8 @@
 <head>
     <title>HackED20 Website</title>
     <link href="{% static 'dashboard/l_style.css' %}" rel="stylesheet" type="text/css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
-    <!--link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" /-->  
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>  
+    <!--script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script> 
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script-->  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
 </head> 
 <body>
@@ -26,40 +25,30 @@
         <li><a href="signup" class="signup-btn"> SIGN UP </a></li>
     </ul>    
     </div>
-    <div class="search-box">
-        <input type="text" name="" id ="search_streamer" class="search-txt" onclick="search()" placeholder="Type to search"/>
-        <a class="search-btn" href="#">
-        <i class="fas fa-search"></i>
-        </a>
-    </div>
-
     
     <div class="holder_layout">    
         <h3>Add Streamer name and select streaming platform </h3>
         <div class="form-group">  
              <form name="add_name" id="add_name">  
                   <div class="table-responsive">  
-                       <table class="table table-bordered" id="dynamic_field">  
+                       <table class="table-bordered" id="dynamic_field">  
                             <tr>  
-                                 <td><input type="text" name="name[]" placeholder="Streamer name" class="form-control" /></td>
+                                 <td><input type="text" id="input1" name="name[]" placeholder="Streamer name" class="form-control" /></td>
                                  <td> <div class="box">
-                                    <select id ="stream_list">
-                                    <option>Facebook</option>
+                                    <select id ="stream_list1">
                                     <option>Mixer</option>
                                     <option>Twitch</option>
-                                    <option>Youtube</option>
                                     </select>
                                 </div> </td> 
-                                 <td><button type="button" name="add" id="add" class="btn-success"> + </button></td></td>>  
+                                 <td><button type="button" name="add" id="row1" class="btn-success"> + </button></td></td>>  
                             </tr>
                        </table>
-                       <input type="image" src="{% static 'dashboard/1_1.png' %}" id="1_1" class="btn-watch" />
+                       <input type="image" src="{% static 'dashboard/1_1.png' %}" id="1_1" value = "1_1" onclick="stream1()" href="layout11" class="btn-watch" />
                          <span class="spacer"></span>
-                         <input type="image" src="{% static 'dashboard/1_2.png' %}" id="1_2" class="btn-watch" />
+                         <input type="image" src="{% static 'dashboard/1_2.png' %}" id="1_2" value = "1_2" onclick="stream2()" class="btn-watch" />
                          <span class="spacer"></span>
-                         <input type="image" src="{% static 'dashboard/1_3.png' %}" id="1_3" class="btn-watch" />    
+                         <input type="image" src="{% static 'dashboard/1_3.png' %}" id="1_3" value = "1_3" onclick="stream3()" class="btn-watch" />    
                   </div>
-                  
              </form>  
         </div>  
         </div>
@@ -72,27 +61,39 @@
           var y = document.getElementById("1_2");
           var z = document.getElementById("1_3");
 
-         $('#add').click(function(){
+         $('#row1').click(function(){
                if (i < 4){
                    i++;
-                   $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" placeholder="Streamer name" class="form-control" /><td> <div class="box"><select id ="stream_list"><option>Facebook</option><option>Mixer</option><option>Twitch</option><option>Youtube</option></select></div> </td></td><td><button type="button" name="remove" id="'+i+'" class="btn_remove">-</button></td></tr>');
+                   $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" id="input'+i+'" name="name[]" placeholder="Streamer name" class="form-control" /><td> <div class="box"><select id ="stream_list' +i+'"><option>Mixer</option><option>Twitch</option></select></div> </td></td><td><button type="button" name="remove" id="'+i+'" class="btn_remove">-</button></td></tr>');
                }
                if (i == 1) {
           x.src = "{% static 'dashboard/1_1.png' %}";
           y.src = "{% static 'dashboard/1_2.png' %}";
           z.src = "{% static 'dashboard/1_3.png' %}";
+          x.value = "1_1";
+          y.value = "1_2";
+          z.value = "1_3";
          }  else if (i == 2) {
           x.src = "{% static 'dashboard/2_1.png' %}";
           y.src = "{% static 'dashboard/2_2.png' %}";
           z.src = "{% static 'dashboard/2_3.png' %}";
+          x.value = "2_1";
+          y.value = "2_2";
+          z.value = "2_3";
          } else if (i == 3) {
           x.src = "{% static 'dashboard/3_1.png' %}";
           y.src = "{% static 'dashboard/3_2.png' %}";
           z.src = "{% static 'dashboard/3_3.png' %}";
+          x.value = "3_1";
+          y.value = "3_2";
+          z.value = "3_3";
          } else if (i == 4) {
           x.src = "{% static 'dashboard/4_1.png' %}";
           y.src = "{% static 'dashboard/4_2.png' %}";
           z.src = "{% static 'dashboard/4_3.png' %}";
+          x.value = "4_1";
+          y.value = "4_2";
+          z.value = "4_3";
          }       
          });  
          $(document).on('click', '.btn_remove', function(){  
@@ -103,19 +104,31 @@
           x.src = "{% static 'dashboard/1_1.png' %}";
           y.src = "{% static 'dashboard/1_2.png' %}";
           z.src = "{% static 'dashboard/1_3.png' %}";
+          x.value = "1_1";
+          y.value = "1_2";
+          z.value = "1_3";
          }  else if (i == 2) {
           x.src = "{% static 'dashboard/2_1.png' %}";
           y.src = "{% static 'dashboard/2_2.png' %}";
           z.src = "{% static 'dashboard/2_3.png' %}";
+          x.value = "2_1";
+          y.value = "2_2";
+          z.value = "2_3";
          } else if (i == 3) {
           x.src = "{% static 'dashboard/3_1.png' %}";
           y.src = "{% static 'dashboard/3_2.png' %}";
           z.src = "{% static 'dashboard/3_3.png' %}";
+          x.value = "3_1";
+          y.value = "3_2";
+          z.value = "3_3";
          } else if (i == 4) {
           x.src = "{% static 'dashboard/4_1.png' %}";
           y.src = "{% static 'dashboard/4_2.png' %}";
           z.src = "{% static 'dashboard/4_3.png' %}";
-         }
+          x.value = "4_1";
+          y.value = "4_2";
+          z.value = "4_3";
+         }       
          });  
          $('#submit').click(function(){            
               $.ajax({  
@@ -130,5 +143,136 @@
               });  
          });  
     });  
-    </script>   
+    </script> 
+
+    <script>
+     function stream3() {
+         var layout = document.getElementById("1_3");
+          var url = layout.value;
+                 switch (url) {
+                     case "1_3":
+                         var stream1 = document.getElementById("input1").value;
+                         var x1 = document.getElementById("stream_list1");
+                         var xtext1 = x1.options[x1.selectedIndex].text;
+                         switch (xtext1) {
+                              case "Twitch":
+                                   var queryString = "?para1=" + "https://player.twitch.tv/?channel=" + stream1 + "&para2=" + "https://www.twitch.tv/embed/" + stream1  + "/chat";
+                                   window.open("layout13" + queryString);
+                                   break;
+                              case "Mixer":
+                                   var queryString = "?para1=" + "https://mixer.com/embed/player/" + stream1 + "&para2=" + "https://mixer.com/embed/chat/" + stream1;
+                                   window.open("layout13" + queryString);
+                                   break;
+                         }
+                         break;
+                    case "2_3":
+                         var stream1 = document.getElementById("input1").value;
+                         var x1 = document.getElementById("stream_list1");
+                         var xtext1 = x1.options[x1.selectedIndex].text;
+                         var stream2 = document.getElementById("input2").value;
+                         var x2 = document.getElementById("stream_list2");
+                         var xtext2 = x2.options[x2.selectedIndex].text;
+                         var queryString = "";
+                         switch (xtext1) {
+                              case "Twitch":
+                                   queryString += "?para1=" + "https://player.twitch.tv/?channel=" + stream1;
+                                   window.open("layout23" + queryString);
+                                   break;
+                              case "Mixer":
+                                   queryString += "?para1=" + "https://mixer.com/embed/player/" + stream1;
+                                   window.open("layout23" + queryString);
+                                   break;
+                         }
+                         switch (xtext2) {
+                              case "Twitch":
+                                   queryString += "&para2=" + "https://player.twitch.tv/?channel=" + stream2;
+                                   window.open("layout23" + queryString);
+                                   break;
+                              case "Mixer":
+                                   queryString += "&para2=" + "https://mixer.com/embed/player/" + stream2;
+                                   window.open("layout23" + queryString);
+                                   break;
+                         }
+                         break;
+                    case "3_3":
+                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         break;
+                    case "4_3":
+                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         break;
+                 }
+             }
+ </script>  
+<script>
+     function stream2() {
+         var layout = document.getElementById("1_2");
+          var url = layout.value;
+                 switch (url) {
+                     case "1_2":
+                         var stream1 = document.getElementById("input1").value;
+                         var x1 = document.getElementById("stream_list1");
+                         var xtext1 = x1.options[x1.selectedIndex].text;
+                         switch (xtext1) {
+                              case "Twitch":
+                                   var queryString = "?para1=" + "https://player.twitch.tv/?channel=" + stream1 + "&para2=" + "https://www.twitch.tv/embed/" + stream1  + "/chat";
+                                   window.open("layout12" + queryString);
+                                   break;
+                              case "Mixer":
+                                   var queryString = "?para1=" + "https://mixer.com/embed/player/" + stream1 + "&para2=" + "https://mixer.com/embed/chat/" + stream1;
+                                   window.open("layout12" + queryString);
+                                   break;
+                         }
+                         break;
+                    case "2_2":
+                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         break;
+                    case "3_2":
+                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         break;
+                    case "4_2":
+                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         break;
+                 }
+             }
+ </script>  
+<script>
+     function stream1() {
+         var layout = document.getElementById("1_1");
+          var url = layout.value;
+                 switch (url) {
+                     case "1_1":
+                         var stream1 = document.getElementById("input1").value;
+                         var x1 = document.getElementById("stream_list1");
+                         var xtext1 = x1.options[x1.selectedIndex].text;
+                         switch (xtext1) {
+                              case "Twitch":
+                                   var queryString = "?para1=" + "https://player.twitch.tv/?channel=" + stream1 + "&para2=" + "https://www.twitch.tv/embed/" + stream1  + "/chat";
+                                   window.open("layout11" + queryString);
+                                   break;
+                              case "Mixer":
+                                   var queryString = "?para1=" + "https://mixer.com/embed/player/" + stream1 + "&para2=" + "https://mixer.com/embed/chat/" + stream1;
+                                   window.open("layout11" + queryString);
+                                   break;
+                         }
+                         break;
+                    case "2_1":
+                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         break;
+                    case "3_1":
+                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         break;
+                    case "4_1":
+                         document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                         document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                         break;
+                 }
+             }
+ </script>  
 </html>
