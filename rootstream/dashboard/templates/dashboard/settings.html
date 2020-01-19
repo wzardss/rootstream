@@ -1,0 +1,32 @@
+
+{% load static %}
+<html>
+<head>
+    <title>HackED20 Website</title>
+    <link href="{% static 'dashboard/a_style.css' %}" rel="stylesheet" type="text/css">
+</head> 
+<body>
+    <header>
+        
+    <div class="row">
+        <div class="logo">
+        <img src="{% static 'dashboard/logo.png'%}"
+        </div>
+            
+    <ul class="main-nav">    
+        <li><a href="index"> HOME </a></li>
+        <li><a href="dashboard"> DASHBOARD </a></li>
+        <li class="active"><a href="about"> ABOUT </a></li>
+        <li><a href="contact"> CONTACT </a></li>
+        <li><a href="account"> ACCOUNT </a></li>
+        <li><a href="settings"> SETTINGS </a></li>
+        <li><a href="signup" class="signup-btn"> SIGN UP  </a></li>
+    </ul>    
+    </div>
+        
+    <div class="hero">
+    <h2>Account Sync Storage and User creation will be Coming Soon </h2>
+    </div>
+    </header>
+</body>    
+</html>
