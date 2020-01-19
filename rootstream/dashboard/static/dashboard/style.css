@@ -235,9 +235,6 @@ h2
 header
 {
     background-image:linear-gradient(rgb(255, 123, 0),rgb(132, 0, 255));
-    height: 100vh;
-    background-size: cover;
-    background-position: center;
 }
 .button
 {
