@@ -14,3 +14,6 @@ def about(request):
 
 def contact(request):
     return render(request, 'dashboard/contact.html')
+
+def account(request):
+    return render(request, 'dashboard/account.html')
