@@ -307,3 +307,51 @@ header
     padding: 20px 20px;
     display: inline;
 }
+
+.channel-list {
+    height: 80%;
+    width: 15%;
+    position: fixed;
+    left: 40px;
+    top: 150px;
+}
+
+.channel-item {
+    padding: 40px 20px;
+    border: 1px white solid;
+    background-color: black;
+    color: white;
+    font-family: Helvetica;
+    position: relative;
+}
+
+.viewers {
+    background-color: red;
+    right: 5px;
+    bottom: 5px;
+}
+
+.twitch {
+    background-color: rgb(179, 23, 226);
+    right: 5px;
+    bottom: 5px;
+}
+
+.mixer {
+    background-color: rgb(50, 190, 255);
+    right: 5px;
+    bottom: 5px;
+}
+
+.label {
+    padding: 5px;
+    font-family: helvetica;
+    border-radius: 3px;
+    position: absolute;
+}
+
+.channel-name {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+}

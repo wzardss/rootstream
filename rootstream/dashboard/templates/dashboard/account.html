@@ -24,11 +24,16 @@
     </ul>    
     </div>
 
-    <input type="text" class="username-form-text" placeholder = "Twitch Username" id="Twitch-Username"> 
-    <a class="btn btn-submit" id="Twitch-submit" onclick="twitch()"> Submit </a>
-    <input type="text" class="username-form-text" placeholder = "Mixer Username" id="Mixer-Username"> 
-    <a class="btn btn-submit" id="Mixer-submit" onclick="mixer()"> Submit </a>
-        
+    <div style="margin-left: 200px; position: relative;">
+        <input type="text" class="username-form-text" placeholder = "Twitch Username" id="Twitch-Username"> 
+        <a class="btn btn-submit" id="Twitch-submit" onclick="twitch()"> Submit </a>
+        <input type="text" class="username-form-text" placeholder = "Mixer Username" id="Mixer-Username"> 
+        <a class="btn btn-submit" id="Mixer-submit" onclick="mixer()"> Submit </a>
+    </div>    
+    
+    <div class="channel-list" id="channel-list">
+    </div>
+    
     <div class="hero">
     <h1>Enter your usernames to use our smart layout feature</h1>
     </header>
@@ -36,8 +41,32 @@
 </html>
 
 <script>
+    'use strict';
+
     var ID_request_Twitch = new XMLHttpRequest();
     var Follow_request_Twitch = new XMLHttpRequest();
+    add_channel("Test Channel", "Mixer", 600);
+    add_channel("Test Channel 2", "Twitch", 600);
+
+
+    function add_channel(channel_name, site, viewers) {
+
+        var list_item = document.createElement("div")
+        list_item.className = "channel-item"
+        list_item.setAttribute("onclick", "setStream()")
+
+        var channel_label = document.createElement("a")
+        channel_label.className = `channel-name`
+        channel_label.appendChild(document.createTextNode(channel_name))
+        list_item.appendChild(channel_label)
+        
+        var site_label = document.createElement("a")
+        site_label.className = `label ${site}`
+        site_label.appendChild(document.createTextNode(site))
+        list_item.appendChild(site_label)
+
+        document.getElementById("channel-list").appendChild(list_item);
+    }
 
     function twitch() {
         var username_Twitch = document.getElementById("Twitch-Username").value;
@@ -59,11 +88,12 @@
     
     function getFollows_Twitch(userID) {
         Follow_request_Twitch.addEventListener('load', followsLoaded_Twitch);
-        Follow_request_Twitch.open('GET', `https://api.twitch.tv/kraken/users/${userID}/follows/channels?limit=100`);
+        Follow_request_Twitch.open('GET', `https://api.twitch.tv/kraken/users/${userID}/follows/channels?limit=100&?sortby=followers`);
         Follow_request_Twitch.setRequestHeader('Client-ID', 'f6z4ksrj4k72o3hb11j5w5qajgfi2v');
         Follow_request_Twitch.setRequestHeader('Accept', 'application/vnd.twitchtv.v5+json');
         Follow_request_Twitch.send();
     }
+
 
     function userIDLoaded_Twitch() {
         var response_Twitch = JSON.parse(ID_request_Twitch.responseText);
@@ -73,8 +103,12 @@
 
     function followsLoaded_Twitch() {
         var response_Twitch = JSON.parse(Follow_request_Twitch.responseText);
+        console.log(response_Twitch)
         response_Twitch.follows.forEach(function (channel, index, array) {
-            console.log(channel.channel.name)
+            var stream_name = channel.channel.name
+            var site = "Twitch"
+            var viewers = channel.channel.viewer
+            add_channel(stream_name, site, viewers)
         })
     }
 </script>
@@ -110,4 +144,28 @@
             console.log(channel.user.username);
         })
     }
+</script>
+
+<script>
+function setStream(channel, site) {
+            var y = document.getElementById("search_streamer") 
+            y.addEventListener("keyup", function(event) {
+                // Number 13 is the "Enter" key on the keyboard
+                if (event.keyCode === 13) {
+                    var x = document.getElementById("stream_list");
+                    var xtext = x.options[x.selectedIndex].text;
+                    var ytext = y.value
+                    switch (xtext) {
+                        case "Twitch":
+                        document.getElementById("frame1").src = "https://player.twitch.tv/?channel=" + ytext
+                        document.getElementById("frame2").src = "https://www.twitch.tv/embed/" + ytext  + "/chat" 
+                        break;
+                    case "Mixer":
+                        document.getElementById("frame1").src = "https://mixer.com/embed/player/" + ytext
+                        document.getElementById("frame2").src = "https://mixer.com/embed/chat/" + ytext
+                        break;
+                    }
+                }
+            });
+        }
 </script>
