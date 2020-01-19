@@ -129,19 +129,7 @@
           y.value = "4_2";
           z.value = "4_3";
          }       
-         });  
-         $('#submit').click(function(){            
-              $.ajax({  
-                   url:"name.php",  
-                   method:"POST",  
-                   data:$('#add_name').serialize(),  
-                   success:function(data)  
-                   {  
-                        alert(data);  
-                        $('#add_name')[0].reset();  
-                   }  
-              });  
-         });  
+         });    
     });  
     </script> 
 
@@ -176,11 +164,9 @@
                          switch (xtext1) {
                               case "Twitch":
                                    queryString += "?para1=" + "https://player.twitch.tv/?channel=" + stream1;
-                                   window.open("layout23" + queryString);
                                    break;
                               case "Mixer":
                                    queryString += "?para1=" + "https://mixer.com/embed/player/" + stream1;
-                                   window.open("layout23" + queryString);
                                    break;
                          }
                          switch (xtext2) {
