@@ -314,10 +314,11 @@ header
     position: fixed;
     left: 40px;
     top: 150px;
+    overflow: auto;
 }
 
 .channel-item {
-    padding: 40px 20px;
+    padding: 20px 20px;
     border: 1px white solid;
     background-color: black;
     color: white;

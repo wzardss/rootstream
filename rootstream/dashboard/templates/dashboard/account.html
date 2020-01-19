@@ -45,11 +45,9 @@
 
     var ID_request_Twitch = new XMLHttpRequest();
     var Follow_request_Twitch = new XMLHttpRequest();
-    add_channel("Test Channel", "Mixer", 600);
-    add_channel("Test Channel 2", "Twitch", 600);
 
 
-    function add_channel(channel_name, site, viewers) {
+    function add_channel(channel_name, site) {
 
         var list_item = document.createElement("div")
         list_item.className = "channel-item"
@@ -107,8 +105,7 @@
         response_Twitch.follows.forEach(function (channel, index, array) {
             var stream_name = channel.channel.name
             var site = "Twitch"
-            var viewers = channel.channel.viewer
-            add_channel(stream_name, site, viewers)
+            add_channel(stream_name, site)
         })
     }
 </script>
@@ -142,6 +139,9 @@
         var response_Mixer = JSON.parse(Follow_request_Mixer.responseText);
         response_Mixer.forEach(function(channel, index, array) {
             console.log(channel.user.username);
+            var stream_name = channel.user.username;
+            var site = "Mixer";
+            add_channel(stream_name, site)
         })
     }
 </script>
