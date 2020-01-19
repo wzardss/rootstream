@@ -394,11 +394,89 @@ header
    }
 
 
+   
+.username-form {
+    max-width: 600px;
+    margin: auto;
+    padding: 0 10px;
+    overflow: hidden;
+    
+    left: 800px;
+    position: relative;
+}
 
+.username-form-text {
+    display: block;
+    width: 50%;
+    box-sizing: border-box;
+    margin: 10px 0;
+    border: 0;
+    background: #111;
+    padding: 20px 40px;
+    outline: none;
+    color: #ddd;
+    transition: 0.5s;
+    display: inline;
+}
 
+.btn-submit {
+    background-color: lightgreen;
+    color: black;
+    border-color: black;
+    padding: 20px 20px;
+    display: inline;
+}
 
+.channel-list {
+    height: 80%;
+    width: 15%;
+    position: fixed;
+    left: 40px;
+    top: 150px;
+    overflow: auto;
+}
 
+.channel-item {
+    padding: 20px 20px;
+    border: 1px white solid;
+    background-color: black;
+    color: white;
+    font-family: Helvetica;
+    position: relative;
+}
 
+.viewers {
+    background-color: red;
+    right: 5px;
+    bottom: 5px;
+}
 
+.twitch {
+    background-color: rgb(179, 23, 226);
+    right: 5px;
+    bottom: 5px;
+}
 
+.mixer {
+    background-color: rgb(50, 190, 255);
+    right: 5px;
+    bottom: 5px;
+}
 
+.label {
+    padding: 5px;
+    font-family: helvetica;
+    border-radius: 3px;
+    position: absolute;
+}
+
+.channel-name {
+    position: absolute;
+    top: 10px;
+    left: 35px;
+}
+
+.profile-pic {
+    height: 40px;
+    width: 40px;
+}
