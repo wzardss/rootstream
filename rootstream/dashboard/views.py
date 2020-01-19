@@ -23,3 +23,6 @@ def layout(request):
 
 def settings(request):
     return render(request, 'dashboard/settings.html')
+
+def layout11(request):
+    return render(request, 'dashboard/layout11.html')

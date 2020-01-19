@@ -10,5 +10,6 @@ urlpatterns = [
     path('contact', views.contact, name='contact'),
     path('account', views.account, name = 'account'),
     path('layout', views.layout, name = 'layout'),
-    path('settings', views.layout, name = 'settings')
+    path('settings', views.layout, name = 'settings'),
+     path('layout11', views.layout11, name = 'layout11')
 ]
